@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Funny Joke Gif</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; 
-        }
+export default function handler(req, res) {
+  const userAgent = req.headers['user-agent'] || '';
 
-        body {
-            background-color: #000; 
-            background-image: url('https://eaiscoolexe.github.io/gif/roblox.gif');
-            background-size: cover;
-            background-position: center center; 
-            background-repeat: no-repeat; 
-        }
-    </style>
-</head>
-<body>
+  if (userAgent.includes("Discordbot/")) {
+    res.writeHead(302, {
+      Location: 'https://niko.horse/calc.jpeg'
+    });
+  } else {
+    res.writeHead(302, {
+      Location: 'calculator://'
+    });
+  }
 
-    <script>
-        window.location.href = "roblox:";
-    </script>
-
-</body>
-</html>
+  res.end();
+}
